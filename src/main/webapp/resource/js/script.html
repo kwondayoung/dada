@@ -181,10 +181,97 @@ function calcApp(){
 				};				
 				};
 		 
- 
+		         <!--------------텍스트 노드 추가   예제 ---------------->
+	             
+		            window.onload = function(){
+		               var addTextButton =document.querySelector("#add-text-node-button");
+		               var addImgButton =document.querySelector("#add-img-node-button");
+		               var removeButton =document.querySelector("#remove-node-button");
+		               
+		               var container =document.querySelector("#node-container");
+		               
+		               var remove11 = function(e){
+		            	   container.removeChild(e.target);		            	   
+		               };
+		               
+		               var idx = 0;
+		               
+		               addTextButton.onclick = function(){
+		                     var span = document.createElement("span");
+		                     //1. TextNode 생성
+		                     var txt = document.createTextNode("안녕하세요"+idx++);		                                       
+		                     
+		                     //2. container(부모)를 얻기                     
+		                     //var container = document.getElementById("container");
+		                     
+		                     //3. 부모에 자식을 추가
+		                     
+		                     //container.appendChild(txt);
+		                     span.appendChild(txt);
+		                     container.appendChild(span);
+		                     
+		                     span.onclick = remove11;
+		                  
+		                     
+		               };      
+		               
+		                addImgButton.onclick = function(){
+		                  
+		                   //How to 1
+		                   
+		                  //1. TextNode 생성
+		                  //var img = document.createElement("img");
+		                  //img.src = "http://seoul-p-studio.bunjang.net/product/64892772_1_1496597306_w320.jpg";
+		                  
+		                  //2. container(부모)를 얻기                  
+		                  //var container = document.getElementById("container");
+		                  
+		                  //3. 부모에 자식을 추가
+		                  //container.appendChild(img);
+		                  
+		                  //How to 2
+		                  container.innerHTML += '<img src = "http://seoul-p-studio.bunjang.net/product/64892772_1_1496597306_w320.jpg">'
+		            };                     
+		            
+
+		                  
+		             
+		          
+		             removeButton.onclick 
+		             
+		             
+		             
+		             
+		             = function(e){
+		            	 //1. 내정된 노드를 지우기 - 예:막내지우기
+		                  //contaitner.parentNOde // contatiner.parentElement
+		                  container.removeChild(container.lastChild);
+		             
+		             	//2. 선택된 노드를 지우기
+		                
+		             };
+		             
+		            };
+		 
+		</script>
+		</head>
+		<body>
 </script>
 </head>
 <body>
+<!-------------텍스트 노드 추가  예제 ---------------->
+
+   <input id ="add-text-node-button"  type="button" value="텍스트 노드 추가"/>
+   <input id ="add-img-node-button"  type="button" value="이미지 노드 추가"/>
+   <input id ="remove-node-button"  type="button" value="노드 삭제"/>
+   
+   <div id ="node-container">
+      
+   </div>
+   <hr />
+
+
+
 <!-------------자식 노드 변경  예제 ---------------->
 
 	<input id ="ch-node-button"  type="button" value="자식 노드 변경"/>
@@ -200,7 +287,7 @@ function calcApp(){
 	<div id ="img-container">
 		<input id ="url" type ="text" value=""/>
 		<input id ="ch-img-button1"  type="button" value="이미지 변경"/>
-		<img src="https://i.ytimg.com/vi/sPFaZONh8zU/maxresdefault.jpg"/>
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXiG8lRzmG9IfbT4i_gLMG4H3SgQXTRjgVjbJSCpcLIbChvEAx"/>
 	</div>
 	<hr />
 

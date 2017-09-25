@@ -2,6 +2,8 @@ package com.newlecture.webapp.controller;
 
 import javax.activation.DataSource;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.newlecture.webapp.dao.NoticeDao;
-import com.newlecture.webapp.dao.spring.SpringNoticeDao;
+
 import com.newlecture.webapp.entity.NoticeView;
 
 // /customer/notice
@@ -21,7 +23,8 @@ import com.newlecture.webapp.entity.NoticeView;
 @RequestMapping("/customer/*")
 public class CustomerController {
 	
-	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 
 	
 	@RequestMapping("notice")
@@ -40,7 +43,9 @@ public class CustomerController {
 	public String noticeDetail(
 			@PathVariable("id") String aaid) {
 		
-		NoticeDao noticeDao =  new SpringNoticeDao();
+		//NoticeDao noticeDao =  new SpringNoticeDao();
+		
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);  
 		NoticeView noticeView = noticeDao.get(aaid);
 		
 		

@@ -9,6 +9,19 @@
 
 		<context:component-scan base-package="com.newlecture.webapp.controller"/>
 		
-		<mvc:annotation-driven />
+		
 		<mvc:resources location="/resource/" mapping="/resource/**"/>
+		<mvc:annotation-driven >
+			<mvc:message-converters> <!-- @ResponseBody로 String 처리할때 한글처리 --> 
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter"> 
+					<property name="supportedMediaTypes"> 
+						<list> 
+							<value>text/html;charset=UTF-8</value>
+						 </list> 
+					 </property>
+				  </bean> 
+			  </mvc:message-converters> 
+		</mvc:annotation-driven>
+
+
 </beans>
