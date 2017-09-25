@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+
+function calcApp(){
+	
+	var xText = document.getElementById("x");
+	var yText = document.getElementById("y");
+	var addButton = document.getElementById("add-button");
+	var resultText = document.getElementById("result");
+	
+	addButton.onclick = addButtonClick;
+	
+	function addButtonClick(){
+		
+	var x,y;
+	x = parseInt(xText.value);
+	y = parseInt(yText.value);
+	/* alert(parseInt(x)+parseInt(y)); */
+
+	resultText.value=x+y;
+	}	
+}
+	
+/* 	function init(){
+		var btnPrint = document.getElementById("btn-print");
+		
+		btnPrint.onclick = printResult;
+	} */
+	
+	window.onload= calcApp;
+	
+	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	
+	
+	window.onload = function(){
+		var countButton =document.getElementById("count-button");
+		var countLabel =document.getElementById("count-label");
+		var timerId = null;
+		
+		var ex1=document.getElementById("ex1");
+		ex1.style.marginTop = "0px";
+		
+		countButton.onclick = function(){
+			
+			if(timerId == null)
+				timerId=setInterval(function(){
+					var count = parseInt(countLabel.textContent);
+					var marginTop = parseInt(ex1.style.marginTop);
+					
+					
+					//목표치에 도달했을 경우
+					if(count <=0){
+					clearInterval(timerId);
+					timerId = null;
+					}
+					
+					if(marginTop>=100){
+					clearInterval(timerId);
+					timerId = null;						
+					}
+					
+					//countLabel.textContent = count  -1;
+					ex1.style.marginTop = (marginTop +1 ) + "px";
+				 }, 30);
+				
+				}
+
+	};
+	
+
+	<!---------------- open a window  예제 ---------------->
+	window.onload = function(){
+		var openButton =document.getElementById("open-button");
+		var movButton =document.getElementById("mov-button");
+		var transButton =document.getElementById("trans-button");
+ 		var win = null; 
+		var iframe= window.frames[0];
+		
+		
+		openButton.onclick = function(){
+			if(win == null) 
+				win=open("notice.html","_blank", "width=500px height=300px");
+		};
+		
+		movButton.onclick = function(){
+			
+			if(win != null) 
+				win.moveBy(-10,0);
+		};
+		
+		transButton.onclick = function(){
+			iframe.location.href="http://www.daum.net";
+			iframe.document.write("hello");
+				};
+		};
+	
+	
+
+	<!---------------- iframe  예제 ---------------->
+	
+	
+	/* window.onload = function(){
+		var navButton =document.getElementById("nav-button");
+		var win = window.frames[0];
+		
+		
+		navButton.onclick = function(){
+			win.location.href="http://www.newlecture.com";
+		};
+		
+		};
+		
+ */
+ 
+ <!---------------- 노드순회  예제 ---------------->
+	
+	
+	window.onload = function(){
+		var chButton =document.getElementById("ch-button");
+		var p = document.getElementById("p");
+		
+		chButton.onclick = function(){
+			//p.style.background="blue";
+			//p.style["background"]= ;
+			//p.firstElementChild.style.border="1px solid blue";
+			
+			alert(p.firstChile.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling)
+			for(var node = p.firstChild ; node !=null; node = node.nextSibling)
+				alert(node.nodeType);
+			
+			
+			
+			
+		};
+		
+		};
+ 
+ 
+		 <!---------------Selector  예제 ---------------->
+			
+			
+			window.onload = function(){
+				var chButton =document.querySelector("#ch-button1");
+				//var p = document.querySelector("#module1 >div.firstchild +div >div");
+				var divs = document.querySelectorAll("#module1 > div");
+				var p = divs[1].querySelector("div");
+				
+				chButton.onclick = function(){
+					p.style.border="1px solid red";
+				};				
+				};
+	 <!---------------이미지 변경  예제 ---------------->
+	 
+		window.onload = function(){
+			var chButton =document.querySelector("#ch-img-button1");
+			var container =document.querySelector("#img-container");
+			var img = container.querySelector("img");
+			var url = document.getElementById("url");
+			
+			chButton.onclick = function(){
+				img.src =url.value;
+			};				
+			};
+	 
+	 
+			<!---------------자식 노드 변경   예제 ---------------->
+			 
+			window.onload = function(){
+				var chButton =document.querySelector("#ch-node-button");
+				var container =document.querySelector("#ch-node-container");
+				
+				
+				chButton.onclick = function(){
+					//container.textContent= "<h1>hoho</h1>";
+					container.innerHTML ="<h1>hoho</h1>";
+				};				
+				};
+		 
+ 
+</script>
+</head>
+<body>
+<!-------------자식 노드 변경  예제 ---------------->
+
+	<input id ="ch-node-button"  type="button" value="자식 노드 변경"/>
+	<div id ="ch-node-container">
+		hello
+	</div>
+	<hr />
+
+
+<!---------------- 이미지 변경  예제 ---------------->
+
+	
+	<div id ="img-container">
+		<input id ="url" type ="text" value=""/>
+		<input id ="ch-img-button1"  type="button" value="이미지 변경"/>
+		<img src="https://i.ytimg.com/vi/sPFaZONh8zU/maxresdefault.jpg"/>
+	</div>
+	<hr />
+
+
+<!---------------- Selector API  예제 ---------------->
+
+	<input id ="ch-button1"  type="button" value="배경색 변경"/>
+	<div id ="module1">
+		<div> 1</div>
+		<div>
+			<div>2</div>
+		</div>
+		<div>3</div>
+	</div>
+	<hr />
+
+
+<!---------------- 노드 순회  예제 ---------------->
+
+
+	<input id ="ch-button"  type="button" value="배경색 변경"/>
+	<div>
+		<div> 1</div>
+		<div id="p" style="">
+			<div>2</div>
+		</div>
+		<div>3</div>
+	</div>
+	<hr />
+
+
+
+<!---------------- iframe  예제 ---------------->
+
+<div>
+	<input id = "nav-button" type="button" value="페이지전환"/>
+	<iframe src = "notice.html" style="width:500px; height:300px;"></iframe>
+
+</div>
+   <hr />
+
+
+
+
+<!---------------- open a window  예제 ---------------->
+
+<div>
+	<input id="open-button" type="button" value="새창띄우기" />
+	<input id="mov-button" type="button" value="왼쪽으로이동" />
+	<input id="trans-button" type="button" value="페이지 이동" />
+	
+	
+
+</div>
+   <hr />
+
+
+
+
+<!---------------- Timer 예제 ---------------->
+<p>
+       남은시간 <span id="count-label">60</span>초
+       <input id="count-button" type="button" value="카운트 시작" />
+   </p>
+   <hr />
+   
+   
+<!--  onclick="alert('안내메세지');"
+<input type="button" value="출력"	
+onclick="	var x, y; x=prompt("x값입력"); y=prompt("y값입력");alert(x+y);"/>  -->
+
+
+
+<!---------------- calculator 예제 ---------------->
+
+<div id="ex1">
+<input type="text" id="x" placeholder="x값을 입력하세요" />
+   <input type="text" id="y" placeholder="y값을 입력하세요" />
+   =
+   <input type="button" value="더하기" id="add-button"/>
+   <input type="text" value="" id="result" />
+
+</div>
+
+</body>
+</html>
