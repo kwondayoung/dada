@@ -9,6 +9,14 @@
 
 		<context:component-scan base-package="com.newlecture.webapp.controller"/>
 		
+		<!-- Resolver // 접두사 접미사 떼게 해줌 -->
+		 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+	      <property name="prefix"  value="/WEB-INF/views/"/>
+	      <property name="suffix" value=".jsp" />
+	      <property name="order"  value="2"/>
+	   </bean>
+		
+		
 		
 		<mvc:resources location="/resource/" mapping="/resource/**"/>
 		<mvc:annotation-driven >

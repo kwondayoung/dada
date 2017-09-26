@@ -7,6 +7,14 @@
 
 	<select id = "get" resultType="com.newlecture.webapp.entity.NoticeView"> 
 		select * from NoticeView where id=#{id}
-			</select>
+	</select>
+	
+	
+	<select id="getList"  resultType="com.newlecture.webapp.entity.NoticeView" >
+		select * from NoticeView
+		where #{param2} like '%${param3}%'
+		order by regDate desc
+		limit ${(param1-1)*10}, 10
+	</select>
 	
 </mapper>
