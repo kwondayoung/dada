@@ -254,7 +254,7 @@ function calcApp(){
 		            };
  <!------------- 노드 바꾸기   예제 ---------------->
 		             
-		window.onload = function(){
+		window.addEventListener("load", function(){
 		   var sawpNodeButton =document.querySelector("#swap-node-button");
 		   var container =document.querySelector("#node-swap-container");
 
@@ -272,16 +272,97 @@ function calcApp(){
 									   node3/* old one */);
 			   container.insertBefore(node3, nodeNext);
 		    };      
+		 });
+		 
+		 
+ <!-------------노드 바꾸기 예제2 ---------------->	
+ 
+ 	window.addEventListener("load", function(){
+		 var moveUpButton =document.querySelector("#move-up-button");
+		 var container =document.querySelector("#move-up-container");
+		 var tbody = container.querySelector("tbody");
+		 //var td = tbody.querySelector("tr:first-child td:last-child");
+		 var td = tbody.firstElementChild.lastElementChild;
+		 
+		 td.onclick = function(e){
+			 e.stopPropagation();
+		 
+			// alert("td");
+			console.log("td");
+			 e.target.style.background = "green";
 		 };
+		 
+
+			 
+			 tbody.onclick = function(e){
+				 //alert("tbody");
+				 console.log("tbody");
+				//alert("target : " + e.target.nodeName + " , current : " + e.currentTarget.nodeName)
+				//e.target.parentNode.style.background = "pink";
+				
+				e.target.style.background = "pink";
+			 };
+			 	 
+			 
+/* 			 var trs = container.querySelectorAll("tbody tr");
+			 
+			  for(var i=0; i<trs.length; i++){
+			 trs[i].onclick = function(e){
+				e.target.style.background = "pink";
+			 }; */	 
+			 
+			  });
+	
+ 	
+ 	
+ 	
+		 moveUpButton.onclick = function(){
+			 
+		 };
+		 
+		 
 		</script>
 		</head>
 		<body>
 </script>
 </head>
 <body>
+<!-------------노드 바꾸기 예제2 ---------------->
+
+   <input id ="move-up-button"  type="button" value="위로 옮기기"/>
+   
+   <div id ="move-up-container">
+	   	<table border="1">
+	   		<thead>
+	   			<tr>
+	   				<td>코드</td>
+	   				<td>제목</td>
+	   			</tr>
+	   		</thead>
+	   		<tbody>
+	   			<tr>
+	   				<td>1</td>
+	   				<td>아아아아아</td>
+	   			</tr>	
+	   			<tr>
+	   				<td>2</td>
+	   				<td>아조로ㅗ로오졸려아</td>
+	   			</tr> 	   				
+	   		</tbody>
+	   	</table>
+	   	
+	   	
+	   	
+      <img src ="../images/answeris.png"/>
+      <img src ="../images/microsoft.png"/>
+      <img src ="../images/w3c.png"/>
+   </div>
+   <hr />
 <!-------------노드 바꾸기 예제 ---------------->
 
    <input id ="swap-node-button"  type="button" value="노드 바꾸기 "/>
+  
+   
    <div id ="node-swap-container">
       <img src ="../images/answeris.png"/>
       <img src ="../images/microsoft.png"/>

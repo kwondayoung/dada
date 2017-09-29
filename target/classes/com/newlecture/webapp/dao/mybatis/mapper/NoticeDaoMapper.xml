@@ -17,4 +17,19 @@
 		limit ${(param1-1)*10}, 10
 	</select>
 	
+	<select id="getPrev"  resultType="com.newlecture.webapp.entity.NoticeView" >
+		select * from NoticeView 
+		where id &lt; CAST(#{id} AS UNSIGNED) 
+		order by regDate desc 
+		limit 1
+		
+	</select>
+	<select id="getNext"  resultType="com.newlecture.webapp.entity.NoticeView" >
+		select * from NoticeView 
+		where id &gt; CAST(#{id} AS UNSIGNED) 
+		order by regDate asc
+		limit 1
+		
+	</select>	
+	
 </mapper>

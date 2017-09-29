@@ -27,7 +27,7 @@ import com.newlecture.webapp.entity.NoticeView;
 public class CustomerController {
 	
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	private NoticeDao noticeDao; //이 framework에서 는 어떤 lib를 썻는 지 흔적을 남기지 않ㄴ는다.
 
 	
 	@RequestMapping("notice")
@@ -37,32 +37,42 @@ public class CustomerController {
 			@RequestParam(value="f", defaultValue="title") String field,
 			@RequestParam(value="q", defaultValue="") String query,
 			Model model) {
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);  
+		//NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);  
 		//List<NoticeView> list = noticeDao.getList(1, "title", "");
-		List<NoticeView> list = noticeDao.getList(page, field, query);
+		//List<NoticeView> list = noticeDao.getList(page, field, query);
 		
 /*		String output = String.format("p:%s, q:%s", page, query);
 		output += String.format("title : %s", list.get(0).getTitle());*/
 		
+		//model.addAttribute("list", noticeDao.getList(page, field, query));
+		
+		List<NoticeView> list = noticeDao.getList(page, field, query);
 		model.addAttribute("list", list);
 		
-		return "customer/notice";
+		return "customer.notice.list";
 	}
 	
-	@ResponseBody	
+	//@ResponseBody	
 	@RequestMapping("notice/{id}")	
 	public String noticeDetail(
-			@PathVariable("id") String aaid) {
+			@PathVariable("id") String id, Model model) {
 		
 		//NoticeDao noticeDao =  new SpringNoticeDao();
 		
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);  
+		//NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);  
 
 		
-		NoticeView noticeView = noticeDao.get(aaid);
+		//NoticeView noticeView = noticeDao.get(aaid);
 		
 		
-		return aaid+"번째 공지사항"+noticeView.getTitle();
+		//return aaid+"번째 공지사항"+noticeView.getTitle();
+		
+		model.addAttribute("n", noticeDao.get(id));
+		model.addAttribute("prev", noticeDao.getPrev(id));
+		model.addAttribute("next", noticeDao.getNext(id));
+		
+		
+		return "customer.notice.detail";
 	}
 	
 	
