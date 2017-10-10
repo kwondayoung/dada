@@ -37,4 +37,22 @@
    </servlet-mapping>
    
    
+   
+<!--    모든 url은 여기를 거쳐서 chain을 넘겨줘야만 서블릿이 실행되는것 -->
+   <filter>
+	   <filter-name>characterEncodingFilter</filter-name>
+	   <!-- <filter-class>com.newlecture.webapp.filter.CharacterEncodingFilter</filter-class> -->
+	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> <!-- 만들어져있는 필터를 사용 /아래의 init은 예외 처리 -->
+	    <init-param>
+	    	<param-name>encoding</param-name>
+	    	<param-value>UTF-8</param-value>
+	    </init-param>
+   </filter>
+   
+   
+   <filter-mapping>
+	   <filter-name>characterEncodingFilter</filter-name>
+	   <url-pattern>/*</url-pattern>
+   </filter-mapping>
+  
 </web-app>

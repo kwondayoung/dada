@@ -273,61 +273,107 @@ function calcApp(){
 			   container.insertBefore(node3, nodeNext);
 		    };      
 		 });
-		 
-		 
- <!-------------노드 바꾸기 예제2 ---------------->	
- 
- 	window.addEventListener("load", function(){
-		 var moveUpButton =document.querySelector("#move-up-button");
-		 var container =document.querySelector("#move-up-container");
-		 var tbody = container.querySelector("tbody");
-		 //var td = tbody.querySelector("tr:first-child td:last-child");
-		 var td = tbody.firstElementChild.lastElementChild;
-		 
-		 td.onclick = function(e){
-			 e.stopPropagation();
-		 
-			// alert("td");
-			console.log("td");
-			 e.target.style.background = "green";
-		 };
-		 
-
-			 
-			 tbody.onclick = function(e){
-				 //alert("tbody");
-				 console.log("tbody");
-				//alert("target : " + e.target.nodeName + " , current : " + e.currentTarget.nodeName)
-				//e.target.parentNode.style.background = "pink";
-				
-				e.target.style.background = "pink";
-			 };
-			 	 
-			 
-/* 			 var trs = container.querySelectorAll("tbody tr");
-			 
-			  for(var i=0; i<trs.length; i++){
-			 trs[i].onclick = function(e){
-				e.target.style.background = "pink";
-			 }; */	 
-			 
-			  });
 	
- 	
- 	
- 	
-		 moveUpButton.onclick = function(){
-			 
-		 };
-		 
-		 
-		</script>
-		</head>
-		<body>
+		
+		
+		
+		
+		
+		
+		//---- 노드 바꾸기 예제 2-------------------------------------------------------------------------------
+
+        window.addEventListener("load", function() {
+     
+           var moveUpButton = document.querySelector("#move-up-button");
+           //var radioButton = document.querySelector("input[type='radio']");
+           var checkedId = 0;
+           
+           var container = document.querySelector("#move-up-container");
+           var tbody =container.querySelector("tbody");
+               /* td 찾는 두가지 방법 */
+        //   var td = tbody.querySelector("tr:first-child td:last-child");
+           var td = tbody.firstElementChild.lastElementChild;//
+              var tr = null;
+            
+           
+           /* var trs =container.querySelectorAll("tbody tr");
+           for(var i=0;i<trs.length;i++){
+              trs[i].onclick = function(e){
+                 e.target.style.background = "pink";
+              }
+           }
+            */
+            
+            td.addEventListener("click", function(e){
+             	// alert("td");
+           		//e.stopPropagation();
+              
+              	//console.log("td");
+              e.target.style.background="green";
+            },false);
+            
+            
+           tbody.addEventListener("click", function(e){
+              //console.log(e.target.nodeName);
+                if(e.target.nodeName == "INPUT") {
+                    //alert("라디오 버튼 클릭");
+                    //tr = e.target.parentNode.parentNode;//parentElement 는 td까지 parentNode는 tr까지
+                    
+                    tr = e.target.parentNode.parentNode;
+                   
+                    
+                    //tr2.style.background = "pink";
+//                      tr.style.background = "pink";
+                }
+                 // console.log("tbody");
+                 /* e.target.style.background = "blue"; */
+                 //alert("target: "+e.target.nodeName+", current: "+ e.currentTarget.nodeName);
+                 //alert("tbody");
+                 //e.target.style.background="pink";
+        /*          if(e.target ==?){
+                    checkedId = .value;
+                 }
+         */         
+                 
+              },true);
+              
+           moveUpButton.onclick = function() {
+        	   if(tr == null)
+        	   			return;
+        	   			
+        	   			
+        	   var bf = tr.previousElementSibling;
+               var af = tr.nextElementSibling;
+               var container = tr.parentNode;
+               container.replaceChild(tr, bf);
+               container.insertBefore(bf, af);
+             
+              
+            
+           };
+           
+           
+        });		 		
+		
+
 </script>
 </head>
+
+
+
+
+
 <body>
-<!-------------노드 바꾸기 예제2 ---------------->
+<!-------------기본행위 막기 예제 ---------------->
+
+	<form>
+		<input type="text" name="title" /> <br />
+		<input type="submit" value="전송" />
+		<a href="">취소</a>
+	</form>
+	<hr />
+	
+<!------------- 노드 바꾸기 예제2 + 이벤트 심화 : 버블링과 캡쳐링  ---------------->
 
    <input id ="move-up-button"  type="button" value="위로 옮기기"/>
    
@@ -335,19 +381,39 @@ function calcApp(){
 	   	<table border="1">
 	   		<thead>
 	   			<tr>
+	   				<td></td>
 	   				<td>코드</td>
 	   				<td>제목</td>
 	   			</tr>
 	   		</thead>
+	   		
 	   		<tbody>
 	   			<tr>
+	   				<td><input name="id" type="radio" value="1"></td>
 	   				<td>1</td>
 	   				<td>아아아아아</td>
 	   			</tr>	
 	   			<tr>
+	   				<td><input name="id" type="radio" value="2"></td>
 	   				<td>2</td>
 	   				<td>아조로ㅗ로오졸려아</td>
-	   			</tr> 	   				
+	   			</tr> 	 
+	   			<tr>
+	   				<td><input name="id" type="radio" value="3"></td>
+	   				<td>3</td>
+	   				<td>아조로ㅗ로오졸려아</td>
+	   			</tr> 
+	   			<tr>
+	   				<td><input name="id" type="radio" value="4"></td>
+	   				<td>4</td>
+	   				<td>아조로ㅗ로오졸려아</td>
+	   			</tr> 
+	   			<tr>
+	   				<td><input name="id" type="radio" value="5"></td>
+	   				<td>5</td>
+	   				<td>아조로ㅗ로오졸려아</td>
+	   			</tr> 
+  				
 	   		</tbody>
 	   	</table>
 	   	

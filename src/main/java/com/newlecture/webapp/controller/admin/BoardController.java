@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.newlecture.webapp.dao.NoticeDao;
+import com.newlecture.webapp.entity.Notice;
 import com.newlecture.webapp.entity.NoticeView;
 
 @Controller
@@ -20,7 +21,7 @@ public class BoardController {
 	
 	
 	@Autowired
-	private NoticeDao noticeDao;
+	private NoticeDao noticeDao; //IOC containter에 객체가 잉ㅅ어어엉
 	
 	
 	@RequestMapping("notice")	
@@ -65,9 +66,16 @@ public class BoardController {
 			String content) throws UnsupportedEncodingException {
 		
 		
-		//title = new String(title.getBytes("ISO-8859-1"), "UTF-8"); //한글 받아오기
-		System.out.println(title);
+		//title = new String(title.getBytes("ISO-8859-1"), "UTF-8"); //한글 받아오기 --> 필터로 옮기겟다
+		//System.out.println(title);
 
+		String writerId = "newlec";
+		
+		int row = noticeDao.insert(title, content, writerId);
+		//int row2 = noticeDao.insert(new Notice(title, content, writerId));
+		
+		
+		
 		return "redirect:../notice";
 		
 	}

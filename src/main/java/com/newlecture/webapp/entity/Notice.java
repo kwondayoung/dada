@@ -10,14 +10,16 @@ public class Notice {
    private int hit;
    private String fileName;
    
+   
+   
+	public Notice() {
+		
+	}
+	
+	
 
-
-public Notice() {
-      
-   }   
       
    public Notice(String id, String title, String content, String writerId, Date regDate, int hit, String fileName) {
-      super();
       this.id = id;
       this.title = title;
       this.content = content;
@@ -26,6 +28,16 @@ public Notice() {
       this.hit = hit;
       this.fileName = fileName;
    }
+   
+   
+   public Notice(String title, String content, String writerId) {
+	    this.title = title;
+	    this.content = content;
+	    this.writerId = writerId;
+	   }   
+ 
+
+   
 
    public String getId() {
       return id;

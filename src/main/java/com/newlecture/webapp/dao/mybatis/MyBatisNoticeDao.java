@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.newlecture.webapp.dao.NoticeDao;
+import com.newlecture.webapp.entity.Notice;
 import com.newlecture.webapp.entity.NoticeView;
 
 public class MyBatisNoticeDao implements NoticeDao {
@@ -54,6 +55,20 @@ public class MyBatisNoticeDao implements NoticeDao {
 		NoticeView result = noticeDao.getNext(id);
 		return result;
 	}
+
+	@Override
+	public int insert(String title, String content, String writerId) {
+		return insert(new Notice(title, content, writerId));
+	}
+
+	@Override
+	public int insert(Notice notice) {
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.insert(notice);
+		
+	}
+
+
 
 
 

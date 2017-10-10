@@ -27,9 +27,19 @@
 	<select id="getNext"  resultType="com.newlecture.webapp.entity.NoticeView" >
 		select * from NoticeView 
 		where id &gt; CAST(#{id} AS UNSIGNED) 
-		order by regDate asc
+		order by regDate 
 		limit 1
 		
 	</select>	
+	
+	 <!-- 파라미터가 객체(Notice)이기때문에 getter의 메소드를 사용할수잇다 -->
+	<insert id="insert" parameterType="com.newlecture.webapp.entity.Notice"> 
+		<selectKey order="BEFORE" keyProperty="id" resultType="String"> <!-- 먼저 실행된다/ notice객체의 id와 충돌이 나지 않음 이것이 우선순위가 높다-->
+			select ifnull(max(cast(id as unsigned)), 0)+1
+			from Notice
+		</selectKey>
+		insert into Notice(id, title, content, writerId)
+		values(#{id}, #{title}, #{content}, #{writerId});
+	</insert>
 	
 </mapper>
