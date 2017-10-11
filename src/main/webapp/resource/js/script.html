@@ -355,7 +355,51 @@ function calcApp(){
            
         });		 		
 		
+		
+		
+<!------------- 노드 복제 예제--------------->
+        
+        
+		window.addEventListener("load", function(){
+		   var cloneButton =document.querySelector("#ex-clone input[value='단순복제']");
+		   var tbody = document.querySelector("#ex-clone tbody");
+		   
+	
+		   cloneButton.onclick = function(e) {
+				var tr = tbody.querySelector("tr");
+				
+				var clone = tr.cloneNode(true);
+				tbody.appendChild(clone);
+		    };      
+		 });
 
+        
+<!------------- Templete 태그를 이용한 노드 복제 예제--------------->
+        
+        
+		window.addEventListener("load", function(){
+		   var cloneButton =document.querySelector("#ex2-clone input[value='단순복제']");
+		   var tbody = document.querySelector("#ex2-clone tbody");
+		   var template = document.querySelector("#ex2-clone template");
+	
+		   cloneButton.onclick = function(e) {
+			   
+			   //현재 브라우저가 templete 태그를 지원한는지에 대한 확인
+				if('content' in template){
+					alert("a");
+				}
+				
+			  /*  var obj = {kor:30, eng:30, math:50};
+			   obj.com = 60; 
+			   
+			   if('com' in obj)
+				   aler(obj.kor+obj.com);*/
+	
+		    };      
+		 });
+
+		
+        
 </script>
 </head>
 
@@ -364,6 +408,66 @@ function calcApp(){
 
 
 <body>
+        <!------------- Templete 태그를 이용한 노드 복제 예제--------------->
+        
+	
+	<div id="ex2-clone">
+
+		<input type="button" value="단순복제" />
+		
+	   	<div id ="clone-container">
+		   	<table border="1">
+		   		<thead>
+		   			<tr>
+		   				<td></td>
+		   				<td>코드</td>
+		   				<td>제목</td>
+		   			</tr>
+		   		</thead>	   		
+		   		<tbody>
+		   		</tbody>
+		   	</table>
+		   	<template>
+		   		<tr>
+		   			<td><input name="id" type="radio" value="1"></td>
+		   			<td>1</td>
+		   			<td>아아아아아</td>
+		   		</tr>	
+		   	</template>
+		</div>
+	</div>
+	<hr />
+
+
+<!------------- 노드 복제 예제--------------->
+	
+	<div id="ex-clone">
+
+		<input type="button" value="단순복제" />
+		
+	   	<div id ="clone-container">
+		   	<table border="1">
+		   		<thead>
+		   			<tr>
+		   				<td></td>
+		   				<td>코드</td>
+		   				<td>제목</td>
+		   			</tr>
+		   		</thead>	   		
+		   		<tbody>
+		   			<tr>
+		   				<td><input name="id" type="radio" value="1"></td>
+		   				<td>1</td>
+		   				<td>아아아아아</td>
+		   			</tr>	
+		   			
+		   		</tbody>
+		   	</table>
+		</div>
+	</div>
+	<hr />
+	   	
+
 <!-------------기본행위 막기 예제 ---------------->
 
 	<form>

@@ -9,7 +9,9 @@
 
 		<context:component-scan base-package="com.newlecture.webapp.controller"/>
 		
-		
+		<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+			<property name="maxUploadSize" value="104857600"/> <!-- 1024*1024*100 -->
+		</bean>
 		
 		
 		<!-- tiles를 이용하기 위한 Resolver / 우선순위 1 -->

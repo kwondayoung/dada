@@ -26,5 +26,7 @@ public interface NoticeDao {
 	int insert(String title, String content, String writerId);
 	
 	int insert(Notice notice);
+
+	String getNextId();
 	 
 }
