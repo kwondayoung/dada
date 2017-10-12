@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.newlecture.webapp.dao.NoticeDao;
+import com.newlecture.webapp.dao.NoticeFileDao;
 import com.newlecture.webapp.entity.Notice;
+import com.newlecture.webapp.entity.NoticeFile;
 import com.newlecture.webapp.entity.NoticeView;
 
 @Controller
@@ -35,6 +37,8 @@ public class BoardController {
 	@Autowired
 	private NoticeDao noticeDao; //IOC containter에 객체가 잉ㅅ어어엉
 	
+	@Autowired
+	private NoticeFileDao noticeFileDao;
 	
 	@RequestMapping("notice")	
 	public String notice(
@@ -122,26 +126,44 @@ public class BoardController {
 		
 		System.out.println(path);
 		
-		File f = new File(path);
+		File f = new File(path); //경로
 		if(!f.exists()) {
 			if(!f.mkdirs())
 				System.out.println("디렉토리를 생성할 수 없습니다.");
 		}
 		
-		InputStream fis = file.getInputStream();
-		OutputStream fos = new FileOutputStream(f);
+		// d:\a\b\c\d/aa.jpg
+		path += File.separator+file.getOriginalFilename();
+		File f2 = new File(path);
 		
-		/*//file.getInputStream();
+		//스트림: 데이터가 들어있는 버퍼 //입력쪽으로, 출력쪽으로의 방향성이 있다. //따라서 스트림 버퍼,스트림이다.
+		//
+		InputStream fis = file.getInputStream();
+		OutputStream fos = new FileOutputStream(f2);
+		
+		byte[] buf = new byte[1024];
+		
+		int size = 0;
+		while((size = fis.read(buf))>0)
+			fos.write(buf, 0, size);
+		
+		fis.close();
+		fos.close();
+		
+		//file.getInputStream();
 		String fileName= file.getOriginalFilename();
 		System.out.println(fileName);
 		
 		String writerId = "newlec";
 		System.out.println(notice.getTitle());
+		
 		notice.setWriterId(writerId);
 		int row = noticeDao.insert(notice);
+		
+		noticeFileDao.insert(new NoticeFile(null, fileName, nextId));
 		//int row2 = noticeDao.insert(new Notice(title, content, writerId));
 		
-		*/
+		
 		
 		return "redirect:../notice";
 		

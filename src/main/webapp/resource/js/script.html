@@ -382,13 +382,41 @@ function calcApp(){
 		   var tbody = document.querySelector("#ex2-clone tbody");
 		   var template = document.querySelector("#ex2-clone template");
 	
+		   
+		   var data = [
+	            {id:"11", title:"자바스크립",writerId:"joo"},
+	            {id:"22", title:"자바스크립트",writerId:"joojoo"},
+	            {id:"33", title:"자바스크립트트",writerId:"joojoojoo"}
+	         ];
+		   
+		   
+		   
 		   cloneButton.onclick = function(e) {
 			   
 			   //현재 브라우저가 templete 태그를 지원한는지에 대한 확인
 				if('content' in template){
-					alert("a");
+					//1. template의 content에 값을 설정
+						/* var tds = template.content.querySelectorAll("td");
+						tds[0].appendChild(document.createTextNode("1"));
+						tds[1].textContent = "test";
+						tds[2].textContent  = "title";				   
+					   //값이 설정된 content를 복제
+					   var clone = document.importNode(template.content, true); */
+			   
+				   //2. 복제를 한 후에 content를 설정하는 경우
+				   
+				   for(var i =0; i<data.length; i++)
+					   {
+					   	var clone = document.importNode(template.content, true);
+					   	var tds = clone.querySelectorAll("td");
+						tds[0].appendChild(document.createTextNode(data[i].id));
+						tds[1].textContent = data[i].title;
+						tds[2].textContent  =data[i].writerId;
+					   
+				   //복제된 clone(tr)을 노드 트리에 추가
+				   tbody.appendChild(clone);
+					   }
 				}
-				
 			  /*  var obj = {kor:30, eng:30, math:50};
 			   obj.com = 60; 
 			   
@@ -430,8 +458,8 @@ function calcApp(){
 		   	<template>
 		   		<tr>
 		   			<td><input name="id" type="radio" value="1"></td>
-		   			<td>1</td>
-		   			<td>아아아아아</td>
+		   			<td></td>
+		   			<td></td>
 		   		</tr>	
 		   	</template>
 		</div>
