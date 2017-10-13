@@ -379,6 +379,8 @@ function calcApp(){
         
 		window.addEventListener("load", function(){
 		   var cloneButton =document.querySelector("#ex2-clone input[value='단순복제']");
+		   var ajaxButton =document.querySelector("#ex2-clone input[value='Ajax요청']");
+		   
 		   var tbody = document.querySelector("#ex2-clone tbody");
 		   var template = document.querySelector("#ex2-clone template");
 	
@@ -389,7 +391,11 @@ function calcApp(){
 	            {id:"33", title:"자바스크립트트",writerId:"joojoojoo"}
 	         ];
 		   
-		   
+		   ajaxButton.onclick = function(e) {
+			   var xhr = new XmlHttpRequest();
+			   
+			   
+		   }
 		   
 		   cloneButton.onclick = function(e) {
 			   
@@ -436,13 +442,14 @@ function calcApp(){
 
 
 <body>
-        <!------------- Templete 태그를 이용한 노드 복제 예제--------------->
+        <!------------- Templete 태그를 이용한 노드 복제 and Ajax 예제--------------->
         
 	
 	<div id="ex2-clone">
-
-		<input type="button" value="단순복제" />
-		
+		<div>
+			<input type="button" value="단순복제" />
+			<input type="button" value="Ajax요청" />
+		</div>	
 	   	<div id ="clone-container">
 		   	<table border="1">
 		   		<thead>

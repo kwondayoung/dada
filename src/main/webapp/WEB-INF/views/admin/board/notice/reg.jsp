@@ -21,10 +21,10 @@
 						<td>첨부파일</td>
 						<td><input type="file" name="file" /></td>
 					</tr>
-<!-- 					<tr>
+ 					<tr>
 						<td>첨부파일</td>
 						<td><input type="file" name="file" /></td>
-					</tr> -->
+					</tr> 
 					<tr>
 						<td colspan="2"><textarea name="content" rows="20" cols="60"></textarea>
 
